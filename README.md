@@ -29,6 +29,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## More
 ```
 git remote add origin https://github.com/naopeke/MyBooks.git
+```
+```
 git branch -M main
+```
+```
 git push - origin main
 ```
