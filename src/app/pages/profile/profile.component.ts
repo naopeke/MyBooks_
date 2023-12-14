@@ -9,10 +9,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
   public myUser: User;
-  public isHidden: true;
+  public myClassCSS :string;
+  public isHidden: boolean;
 
   constructor(){
     this.myUser = new User(1, 'John Ronald Reuel', 'Tolkien', 'jjtolkien@tolkien.org', 'https://i0.wp.com/elanillounico.com/wp-content/uploads/2015/03/JRR-Tolkien15.jpg?resize=723%2C1024&ssl=1', 'Gandulf1234');
+    this.myClassCSS = "class1"
     this.isHidden = true;
   }
 
@@ -21,10 +23,26 @@ export class ProfileComponent implements OnInit {
   }
 
   modificar(newName: HTMLInputElement, newLastName: HTMLInputElement, newEmail: HTMLInputElement, newPhoto: HTMLInputElement){
-    this.myUser.name = newName.value;
-    this.myUser.last_name = newLastName.value;
-    this.myUser.email = newEmail.value;
-    this.myUser.photo = newPhoto.value;
+  
+    // this.myUser.name = newName.value;
+    // this.myUser.last_name = newLastName.value;
+    // this.myUser.email = newEmail.value;
+    // this.myUser.photo = newPhoto.value;
+    // console.log(this.myUser.name);
+
+    if (newName.value !== '') {
+      this.myUser.name = newName.value;
+    }
+    if (newLastName.value !== '') {
+      this.myUser.last_name = newLastName.value;
+    }
+    if (newEmail.value !== '') {
+      this.myUser.email = newEmail.value;
+    }
+    if (newPhoto.value !== '') {
+      this.myUser.photo = newPhoto.value;
+    }
+    this.isHidden = false;
     console.log(this.myUser.name);
   }
 
