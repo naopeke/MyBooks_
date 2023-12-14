@@ -1,0 +1,80 @@
+<div class="form-wrapper">
+    <div>
+        <form class="form-left">
+            <img class="image" src="{{ myUser.photo }}" alt="img"/>
+            <p class="title fullname">{{ myUser.nombreCompleto() }}</p>
+            <p class="title name">Nombre: </p>
+            <p class="output"> {{ myUser.name }}</p>
+            <p class="title last_name">Apellido: </p>
+            <p class="output"> {{ myUser.last_name }}</p>
+            <p class="title email">Email: </p>
+            <p class="output"> {{ myUser.email }}</p>
+        </form>
+        <!-- <form class="form-left">
+            <img class="image" src="{{ myUser.photo }}" alt="img"/>
+            <input type="text" [value]="nombreCompleto">       
+            <label for="" >Nombre</label>
+            <input type="text" [value]="myUser.name">
+            <input type="email" value="{{ myUser.name }}">
+            <label for="">Apellido</label>
+            <input type="text" [value]="myUser.last_name">
+            <input type="email" value="{{ myUser.last_name }}">
+            <label for="">Email</label>
+            <input type="text" [value]="myUser.email">
+            <input type="email" value="{{ myUser.email }}">
+            <label for="">URL of Photo</label>
+            <input type="text" [value]="myUser.photo">
+            <input type="text" value="{{ myUser.photo }}">
+        </form> -->
+     </div> 
+    <div>
+        <!-- <form class="form-right">        
+            <h2 class="">Editar datos</h2>
+            <label for="" >Nombre</label>
+            <input type="text" [value]="myUser.name">
+            <!-- <input type="email" value="{{ myUser.name }}"> -->
+            <!-- <label for="">Apellido</label>
+            <input type="text" [value]="myUser.last_name"> -->
+            <!-- <input type="email" value="{{ myUser.last_name }}"> -->
+            <!-- <label for="">Email</label>
+            <input type="text" [value]="myUser.email"> -->
+            <!-- <input type="email" value="{{ myUser.email }}"> -->
+            <!-- <label for="">URL of Photo</label>
+            <input type="text" [value]="myUser.photo"> -->
+            <!-- <input type="text" value="{{ myUser.photo }}"> -->
+            <!-- <button >Modificar</button>
+        </form>  -->
+
+        <form class="form-right">        
+            <h2>Editar datos</h2>
+            
+            <label for="input1">Nombre</label>
+            <input type="text" #input1>
+          
+            <label for="input2">Apellido</label>
+            <input type="text" #input2>
+          
+            <label for="input3">Email</label>
+            <input type="email" #input3>
+          
+            <label for="input4">URL del foto</label>
+            <input type="text" #input4>
+
+            <button (click)="modificar(input1, input2, input3, input4)">Modificar</button>
+            <!-- <button (click)="enviar(inputName.value, inputLastName.value, inputEmail.value, inputPhoto.value)">Modificar</button> -->
+        </form>
+        
+        <!-- <form class="form-right">        
+            <h2>Editar datos</h2>
+            <label for="input1" >Nombre</label>
+            <input type="text" [(ngModel)]="myUser.name">
+            <label for="input2">Apellido</label>
+            <input type="text" [(ngModel)]="myUser.last_name">
+            <label for="input3">Email</label>
+            <input type="email" [(ngModel)]="myUser.email">
+            <label for="input4">URL del foto</label>
+            <input type="text" [(ngModel)]="myUser.photo">
+            <button (click)="enviar1()">Modificar1</button>
+        </form> -->
+    </div>
+</div>

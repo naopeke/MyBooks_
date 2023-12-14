@@ -9,7 +9,7 @@ footer {
     bottom:0;
     left:0;
     width:100%;
-    position:absolute;
+    position:fixed;
     height:60px;
     background-color: var(--bg-color);
     display: flex;
