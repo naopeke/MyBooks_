@@ -10,6 +10,10 @@ import { FormRegisterComponent } from './components/form-register/form-register.
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FormsModule } from '@angular/forms';
+import { BooksComponent } from './pages/books/books.component';
+import { PipeNamePipe } from './pipes/pipe-name.pipe';
+import { TemperaturePipe } from './pipes/temperature.pipe';
+import { TemperatureTestComponent } from './pages/temperature-test/temperature-test.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     FormRegisterComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    BooksComponent,
+    PipeNamePipe,
+    TemperaturePipe,
+    TemperatureTestComponent
   ],
   imports: [
     BrowserModule,
