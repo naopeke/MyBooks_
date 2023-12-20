@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import { Temperature } from 'src/app/models/temperature';
 
 @Component({
@@ -7,6 +8,6 @@ import { Temperature } from 'src/app/models/temperature';
   styleUrls: ['./temperature-test.component.css']
 })
 export class TemperatureTestComponent {
-  public tempC = 10;
-  public tempF = 10;
+  public tempC : number = 0;
+  public tempF : number = 32;
 }

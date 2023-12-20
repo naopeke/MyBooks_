@@ -1,6 +1,29 @@
 <div>
-<p>temperature-test works!</p>
-<p>{{ tempC }} °C = {{ tempC | temperature:'F' }}</p>
-<p>{{ tempF }} °F = {{ tempF | temperature:'C' }}</p>
+    <p>temperature-test works!</p>
+    <p>{{ tempC }} °C = {{ tempC | temperature:'F' }}</p>
+    <p>{{ tempF }} °F = {{ tempF | temperature:'C' }}</p>
 </div>
+<!-- 
+<div>
+    <p>temperature-test works!</p>
+    <div class="form-wrapper">
 
+        <form class="form">
+         <p class="title">Converter</p>
+         <label for="tempC">
+            <input placeholder="grados celsius" type="number" [(ngModel)]="tempC" #tempC>
+         </label>
+         
+         <label for="tempF">
+            <input placeholder="grados fahrenheit" type="number" [(ngModel)]="tempF" #tempF>
+         </label>
+        </form>
+    </div>
+
+    <div class="result-wrapper">
+        <div>C => F</div>
+        <div>{{ tempC }} °C = {{ tempC | temperature:'F' }} °F</div>
+        <div>F => C</div>
+        <div>{{ tempF }} °F = {{ tempF | temperature:'C' }} °C</div>
+    </div>
+</div> -->
