@@ -14,6 +14,7 @@ import { BooksComponent } from './pages/books/books.component';
 import { PipeNamePipe } from './pipes/pipe-name.pipe';
 import { TemperaturePipe } from './pipes/temperature.pipe';
 import { TemperatureTestComponent } from './pages/temperature-test/temperature-test.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TemperatureTestComponent } from './pages/temperature-test/temperature-t
     BooksComponent,
     PipeNamePipe,
     TemperaturePipe,
-    TemperatureTestComponent
+    TemperatureTestComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

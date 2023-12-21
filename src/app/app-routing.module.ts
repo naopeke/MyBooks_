@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: "profile", component:ProfileComponent},
   {path: "register", component:RegisterComponent},
   {path: "books", component:BooksComponent},
-  {path: "temperature", component:TemperatureTestComponent}
+  // {path: "temperature", component:TemperatureTestComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,29 @@
+<!-- 子コンポーネント：表示専用 child for display -->
+
+<!-- <div class="container"> -->
+    <!-- ↓*ngForループは親コンポーネント books.component.htmlにlet book of booksとして移動 -->
+    <!-- <ng-container *ngIf="books.length > 0; else mensajeSinLibros"> -->
+        <!-- <div class="card-wrapper"> -->
+            <!-- <div class="card" *ngFor="let book of books; let i = index"> -->
+            <div class="card">
+                <div class="delete-wrapper">
+                    <div class="delete" (click)="deleteCard()">×</div>
+                </div>
+                <img class="image" src="{{ childCard.photo }}" alt="img"/>
+                <p class="output booktype"> {{ childCard.type }}</p>
+                <p class="output booktitle"> {{ childCard.title }}</p>
+                <p class="output bookauthor"> {{ childCard.author }}</p>
+                <p class="output bookid"> {{ childCard.id_book | addRef }}</p>
+                <p class="output bookprice"> {{ childCard.price | currency:"EUR":"symbol"}}</p>
+                <!-- ↓*ngForが使えないため、iが存在せずエラー。-->
+                <!-- <button [ngClass]="i % 2 === 0 ? 'esPar' : 'esImpar'">Comprar</button> -->
+                <!-- ↓card.component.tsに新しいプロパティ'isEven'を追加。'childCard'のインデックスが偶数か奇数かを判断 -->
+                <!-- isEvenがTrue（偶数）のとき、.esParのCSSを使用、False（奇数）のとき.esImparのCSSを使用 -->
+                <button [ngClass]="{'esPar': isEven, 'esImpar': !isEven}">Comprar</button>
+            <!-- </div> -->
+            <!-- </div> -->
+        <!-- </div> -->
+    <!-- </ng-container> -->
+
+
+</div>

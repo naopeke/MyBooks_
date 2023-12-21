@@ -1,52 +1,49 @@
-<p>books works!</p>
+<!-- 親コンポーネント books ：本の追加や管理 parent : add and edit books-->
+
+<!-- 子コンポーネント（card）のセレクタ（app-card）を使用。
+@Inputデコレータを追加したプロパティ（childCard)は、親コンポーネントから子コンポーネントを呼ぶ際の属性として使用 -->
+<!-- ngClassで、Angular アプリケーション内で動的にHTML要素にCSSクラスを適用 -->
 <div class="container">
-    <ng-container *ngIf="books.length > 0; else mensajeSinLibros">
-        <div class="card-wrapper">
-            <div class="card" *ngFor="let book of books; let i = index">
-                <img class="image" src="{{ book.photo }}" alt="img"/>
-                <p class="output booktype"> {{ book.type }}</p>
-                <p class="output booktitle"> {{ book.title }}</p>
-                <p class="output bookauthor"> {{ book.author }}</p>
-                <p class="output bookid"> {{ book.id_book | addRef }}</p>
-                <p class="output bookprice"> {{ book.price | currency:"EUR":"symbol"}}</p>
-                <button [ngClass]="i % 2 === 0 ? 'esPar' : 'esImpar'">Comprar</button>
-            </div>
-        </div>
-    </ng-container>
-
-    <div class="form-wrapper">
-        <form class="form">
-            <p class="title">Añadir libro</p>
-            <label for="titulo">
-                <input placeholder="Título" type="text" class="input" #titulo>
-            </label>
-
-            <label for="tipo">
-                <input placeholder="Tapa blanda/dura" type="text" class="input" #tipo>
-            </label>
-
-            <label for="autor">
-                <input placeholder="Autor" type="text" class="input" #autor>
-            </label>
-
-            <label for="precio">
-                <input placeholder="Precio" type="text" class="input" #precio>
-            </label>
-
-            <label for="foto">
-                <input placeholder="Photo" type="text" class="input" #foto>
-            </label>
-
-            <label for="bookid">
-                <input placeholder="Codigo Libro" type="text" class="input" #bookid>
-            </label>
-
-            <!-- <button>Insertar Libro</button> -->
-            <input type="button" class="btn-insertar" (click)="addBooks(bookid, titulo, tipo, autor, precio, foto)" value="Insertar Libro"/>
-        </form>
+    <div class="card-wrapper">
+        <app-card *ngFor="let book of books; let i = index" 
+                  [childCard]="book"
+                  [isEven]="i % 2 === 0"
+                  (deleteFromChild)="deleteBook(i)">
+        </app-card>
     </div>
-
-    <ng-template #mensajeSinLibros>
-        <div class="mensajeSinLibros" style="color:red; text-align:center; font-size:50px;">No hay ningún libro en nuestro dato. </div>
-    </ng-template>
 </div>
+<div class="form-wrapper">
+    <form class="form">
+        <p class="title">Añadir libro</p>
+        <label for="titulo">
+            <input placeholder="Título" type="text" class="input" #titulo>
+        </label>
+
+        <label for="tipo">
+            <input placeholder="Tapa blanda/dura" type="text" class="input" #tipo>
+        </label>
+
+        <label for="autor">
+            <input placeholder="Autor" type="text" class="input" #autor>
+        </label>
+
+        <label for="precio">
+            <input placeholder="Precio" type="text" class="input" #precio>
+        </label>
+
+        <label for="foto">
+            <input placeholder="Photo" type="text" class="input" #foto>
+        </label>
+
+        <label for="bookid">
+            <input placeholder="Codigo Libro" type="text" class="input" #bookid>
+        </label>
+
+        <!-- <button>Insertar Libro</button> -->
+        <input type="button" class="btn-insertar" (click)="addBooks(bookid, titulo, tipo, autor, precio, foto)" value="Insertar Libro"/>
+    </form>
+</div>
+
+<ng-template #mensajeSinLibros>
+    <div class="mensajeSinLibros" style="color:red; text-align:center; font-size:50px;">No hay ningún libro en nuestro dato. </div>
+</ng-template>
