@@ -49,6 +49,31 @@
     margin-bottom: 10px;
 }
 
+.backBtn-wrapper{
+    /* border: 2px solid red; */
+    padding-top:100px;
+    padding-left: 80px;
+}
+
+.backBtn{
+    color:white;
+    width: 100px;
+}
+
+
+.search-wrapper{
+    /* border:2px solid green; */
+    padding-top:10px;
+    display: flex;
+    justify-content: center;
+}
+
+.container2{
+    margin-top:50px;
+    display:flex;
+    justify-content: center;
+}
+
 .form-wrapper{
     /* border:2px solid red; */
     margin-bottom:100px;
@@ -80,16 +105,17 @@ input {
     text-align: center;
 }
 
-button {
+/* button {
     width:100px;
     height:30px;
     border-radius: 8px;
     margin-top: 8px;
-}
+} */
 
 .btn-insertar{
     background-color: darkred;
     margin-top: 10px;
+    height:50px;
 }
 
 /* par = even 偶数, impar = odd 奇数*/

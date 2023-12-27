@@ -1,18 +1,47 @@
 <!-- 親コンポーネント books ：本の追加や管理 parent : add and edit books-->
+<div class="backBtn-wrapper">
+    <button type="button" class="btn btn-secondary backBtn" (click)="goBack()">Back</button>
+</div>
+
+<!-- si NO existe objeto book que ha buscado, se muestra -->
+<div class="search-wrapper" *ngIf="!book">
+    <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search by ID" aria-label="Search" #searchInput>
+        <button class="btn btn-outline-success" type="button" (click)="filterBooks(searchInput.value)">BUSCAR</button>
+    </form>
+</div>
+
+<!-- si existe objeto book que ha buscado, se muestra -->
+<div class="container2" *ngIf="book">
+    <app-card [childCard]="book" 
+              [isEven]="i % 2 === 0">
+    </app-card>
+</div>
 
 <!-- 子コンポーネント（card）のセレクタ（app-card）を使用。
 @Inputデコレータを追加したプロパティ（childCard)は、親コンポーネントから子コンポーネントを呼ぶ際の属性として使用 -->
 <!-- ngClassで、Angular アプリケーション内で動的にHTML要素にCSSクラスを適用 -->
-<div class="container">
+<!-- Para todas las tarjetas. Add *ngIf="!book! to the existing code from dia4 -->
+<div class="container" *ngIf="!book">
     <div class="card-wrapper">
         <app-card *ngFor="let book of books; let i = index" 
                   [childCard]="book"
                   [isEven]="i % 2 === 0"
-                  (deleteFromChild)="deleteBook(i)">
+                  (deleteFromChild)="refreshBooks()">
+                  <!-- ↑ CardComponentで削除されたときに、BooksComponentが更新されるようにする -->
+                  <!-- Dia4 (deleteFromChild)="deleteBook(book.id_book)"> -->
+                  <!-- Dia 3 (deleteFromChild)="deleteBook(i)" -->
         </app-card>
     </div>
 </div>
-<div class="form-wrapper">
+
+<!-- Paso de Parámetros por URL-->
+<!-- <p *ngIf="parametro!=null">
+    El código introducido es: {{parametro}}
+    </p>     -->
+
+
+<!-- <div class="form-wrapper">
     <form class="form">
         <p class="title">Añadir libro</p>
         <label for="titulo">
@@ -37,13 +66,13 @@
 
         <label for="bookid">
             <input placeholder="Codigo Libro" type="text" class="input" #bookid>
-        </label>
+        </label> -->
 
         <!-- <button>Insertar Libro</button> -->
-        <input type="button" class="btn-insertar" (click)="addBooks(bookid, titulo, tipo, autor, precio, foto)" value="Insertar Libro"/>
+        <!-- <input type="button" class="btn-insertar" (click)="addBooks(bookid, titulo, tipo, autor, precio, foto)" value="Insertar Libro"/>
     </form>
 </div>
 
 <ng-template #mensajeSinLibros>
     <div class="mensajeSinLibros" style="color:red; text-align:center; font-size:50px;">No hay ningún libro en nuestro dato. </div>
-</ng-template>
+</ng-template> -->
