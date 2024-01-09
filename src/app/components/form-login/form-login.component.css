@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    color:black;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+}
+
+form p{
+    font-size: 28px;
+}
+.form-wrapper {
+    /* border:2px red solid; */
+    margin-top: 200px;
+    padding-bottom:24px;
+    width: 350px;
+    border-radius: 30px;
+    background-color: #F9AA33;
+    display: flex;
+    justify-content: center;
+}
+
+.form-control {
+    color:black;
+}
+
+form {
+    background-color: #F9AA33;
+    width: 300px;
+}
+
+.invalid-feedback {
+    color: red;
+}

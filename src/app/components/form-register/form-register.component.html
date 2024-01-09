@@ -1,37 +1,101 @@
 <div class="container">
     <div class="form-wrapper">
-        <form class="form">
+        <form [formGroup]="registerForm">
             <p class="title">Registrate </p>
             <p class="message">Registrate para acceder al nuestro servicio</p>
-                <div class="flex">
-                <label>
-                    <input required="" placeholder="" type="text" class="input">
-                    <span>Nombre</span>
-                </label>
-                <label>
-                    <input required="" placeholder="" type="text" class="input">
-                    <span>Apellido</span>
-                </label>
-            </div>  
-            <label>
-                <input required="" placeholder="" type="email" class="input">
-                <span>Email</span>
-            </label> 
-            <label>
-                <input required="" placeholder="" type="url" class="input">
-                <span>URL</span>
-            </label> 
-            <label>
-                <input required="" placeholder="" type="password" class="input">
-                <span>Contraseña</span>
-            </label>
-            <label>
-                <input required="" placeholder="" type="password" class="input">
-                <span>Confirmar la contraseña</span>
-            </label>
-            <button class="submit">Registrarse</button>
-            <p class="signin">Ya tienes una cuenta?<a href="#">Signin</a> </p>
+
+            <div class="mb-3">
+                <label for="registerName" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" formControlName="nombre"
+                    [ngClass]="{'is-invalid': (registerForm.get('nombre').dirty 
+                    || registerForm.get('nombre').touched) 
+                    && !registerForm.get('nombre').valid}">
+                <div *ngIf="!registerForm.get('nombre').valid" class="invalid-feedback">
+                    El nombre es necesario
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="registerLastName" class="form-label">Apellido</label>
+                <input type="text" class="form-control" formControlName="apellido"
+                    [ngClass]="{'is-invalid': (registerForm.get('apellido').dirty 
+                    || registerForm.get('apellido').touched) 
+                    && !registerForm.get('apellido').valid}">
+                <div *ngIf="!registerForm.get('apellido').valid" class="invalid-feedback">
+                    El apellido es necesario
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="registerEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" formControlName="email"
+                    [ngClass]="{'is-invalid': (registerForm.get('email').dirty 
+                    || registerForm.get('email').touched) 
+                    && !registerForm.get('email').valid}">
+                <div *ngIf="!registerForm.get('email').valid" class="invalid-feedback">
+                    <div *ngIf="registerForm.get('email').errors?.required">
+                        La dirección de email es obligatoria
+                    </div>
+                    <div *ngIf="registerForm.get('email').errors?.email">
+                        Dirección email incorrecta
+                    </div>
+                </div>
+            </div>
+            
+            
+
+            <div class="mb-3">
+                <label for="registerUrl" class="form-label">URL</label>
+                <input type="url" class="form-control" formControlName="url"
+                    [ngClass]="{'is-invalid': (registerForm.get('url').dirty 
+                        || registerForm.get('url').touched) 
+                        && !registerForm.get('url').valid}">
+                <div *ngIf="!registerForm.get('url').valid" class="invalid-feedback">
+                    <div *ngIf="registerForm.get('url').errors.required">
+                        La dirección de URL es obligatoria
+                    </div>
+                    <div *ngIf="registerForm.get('url').errors?.pattern">
+                        Dirección URL incorrecta
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="registerPassword" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" formControlName="password1" [value]="registerForm.get('password1').value"
+                        [ngClass]="{'is-invalid': (registerForm.get('password1').dirty 
+                        || registerForm.get('password1').touched) 
+                        && !registerForm.get('password1').valid}">
+                <div *ngIf="!registerForm.get('password1').valid" class="invalid-feedback">
+                    <div *ngIf="registerForm.get('password1').errors.required">
+                        La contraseña es obligatoria
+                    </div>
+                    <div *ngIf="registerForm.get('password1').errors?.minlength">
+                        Al menos 8 caracteres
+                    </div>
+                    <div *ngIf="registerForm.get('password1').errors?.passwordStrength">
+                        Mayúscula, minúscula y un número
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+                <input type="password" class="form-control" formControlName="password2"
+                        [ngClass]="{'is-invalid': (registerForm.get('password2').dirty
+                        || registerForm.get('password2').touched) 
+                        && !registerForm.get('password2').valid}">
+                <div *ngIf="!registerForm.get('password1').valid" class="invalid-feedback">
+                    <div *ngIf="registerForm.get('password2').errors.required">
+                        Confirmar la contraseña
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-secondary" (click)="register()">Registrarse</button>
+                <p class="signin">Ya tienes una cuenta?<a href="/login">Signin</a> </p>
+            </div>
         </form>
     </div>
-
 </div>

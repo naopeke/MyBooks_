@@ -1,37 +1,39 @@
 <!-- 本の追加や管理 -->
-
-<div class="form-wrapper">
-    <form class="form">
-        <p class="title">Añadir libro</p>
-        <label for="titulo">
-            <input placeholder="Título" type="text" class="input" #titulo>
-        </label>
-
-        <label for="tipo">
-            <input placeholder="Tapa blanda/dura" type="text" class="input" #tipo>
-        </label>
-
-        <label for="autor">
-            <input placeholder="Autor" type="text" class="input" #autor>
-        </label>
-
-        <label for="precio">
-            <input placeholder="Precio" type="text" class="input" #precio>
-        </label>
-
-        <label for="foto">
-            <input placeholder="Photo" type="text" class="input" #foto>
-        </label>
-
-        <label for="bookid">
-            <input placeholder="Codigo Libro" type="text" class="input" #bookid>
-        </label>
-
-        <!-- <input class="btn btn-primary" type="button" value="Insertar Libro"> -->
-        <!-- 上のidと一致する必要あり -->
-        <button class="btn btn-primary" type="button" (click)="newBook(bookid.value, titulo.value, tipo.value, autor.value, precio.value, foto.value)">Insertar Libro</button>
-
-        <!-- <input type="button" class="btn-insertar" (click)="addBooks(bookid, titulo, tipo, autor, precio, foto)" value="Insertar Libro"/> -->
-    </form>
-</div>
-
+<main>
+    <div class="form-wrapper">
+        <form class="form">
+            <p class="title">Añadir libro</p>
+            <label for="titulo">
+                <input placeholder="Título" type="text" class="input" #titulo>
+            </label>
+    
+            <label for="tipo">
+                <input placeholder="Tapa blanda/dura" type="text" class="input" #tipo>
+            </label>
+    
+            <label for="autor">
+                <input placeholder="Autor" type="text" class="input" #autor>
+            </label>
+    
+            <label for="precio">
+                <input placeholder="Precio" type="text" class="input" #precio>
+            </label>
+    
+            <label for="foto">
+                <input placeholder="Photo" type="text" class="input" #foto>
+            </label>
+    
+            <label for="bookid">
+                <input placeholder="Codigo Libro" type="text" class="input" #bookid>
+            </label>
+    
+            <!-- <input class="btn btn-primary" type="button" value="Insertar Libro"> -->
+            <!-- 上のidと一致する必要あり -->
+            <button class="btn btn-light" type="button" (click)="newBook(bookid.value, titulo.value, tipo.value, autor.value, precio.value, foto.value)">Insertar Libro</button>
+    
+            <!-- <input type="button" class="btn-insertar" (click)="addBooks(bookid, titulo, tipo, autor, precio, foto)" value="Insertar Libro"/> -->
+        </form>
+    </div>
+    
+    
+</main>

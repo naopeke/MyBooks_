@@ -1,38 +1,43 @@
-<div class="backBtn-wrapper">
-    <button type="button" class="btn btn-secondary backBtn" (click)="goBack()">Back</button>
-</div>
-
-<div class="form-wrapper">
-    <form class="form">
-        <p class="title">Modificar libro</p>
-        <label for="titulo">
-            <input placeholder="Título" type="text" class="input" #titulo>
-        </label>
-
-        <label for="tipo">
-            <input placeholder="Tapa blanda/dura" type="text" class="input" #tipo>
-        </label>
-
-        <label for="autor">
-            <input placeholder="Autor" type="text" class="input" #autor>
-        </label>
-
-        <label for="precio">
-            <input placeholder="Precio" type="text" class="input" #precio>
-        </label>
-
-        <label for="foto">
-            <input placeholder="Photo" type="text" class="input" #foto>
-        </label>
-
-        <label for="bookid">
-            <input placeholder="Codigo Libro" type="text" class="input" #bookid>
-        </label>
-
-        <button class="btn btn-primary" (click)="updateBook(bookid.value, titulo.value, tipo.value, autor.value, precio.value, foto.value)">Modificar Libro</button>
-
-        <!-- Dia 4 -->
-        <!-- <input type="button" class="btn-insertar" (click)="addBooks(bookid, titulo, tipo, autor, precio, foto)" value="Modificar Libro"/> -->
-    </form>
-</div>
+<main>
+    <div class="backBtn-wrapper">
+        <button type="button" class="btn btn-secondary backBtn" (click)="goBack()">Back</button>
+    </div>
+    <div class="container">
+        <div class="form-wrapper">
+            <form class="form">
+                <p class="title">Modificar libro</p>
+                <label for="titulo">
+                    <input placeholder="Título" type="text" class="input" #titulo>
+                </label>
+        
+                <label for="tipo">
+                    <input placeholder="Tapa blanda/dura" type="text" class="input" #tipo>
+                </label>
+        
+                <label for="autor">
+                    <input placeholder="Autor" type="text" class="input" #autor>
+                </label>
+        
+                <label for="precio">
+                    <input placeholder="Precio" type="text" class="input" #precio>
+                </label>
+        
+                <label for="foto">
+                    <input placeholder="Photo" type="text" class="input" #foto>
+                </label>
+        
+                <label for="bookid">
+                    <input placeholder="Codigo Libro" type="text" class="input" #bookid>
+                </label>
+        
+                <button class="btn btn-light" (click)="updateBook(bookid.value, titulo.value, tipo.value, autor.value, precio.value, foto.value)">Modificar Libro</button>
+        
+                <!-- Dia 4 -->
+                <!-- <input type="button" class="btn-insertar" (click)="addBooks(bookid, titulo, tipo, autor, precio, foto)" value="Modificar Libro"/> -->
+            </form>
+        </div>
+        
+    </div>
+   
+</main>
 

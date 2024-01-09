@@ -1,0 +1,33 @@
+<main>
+  <div class="form-wrapper">
+    <form [formGroup]="loginForm">
+      <p class="title">LOG IN</p>
+      <div class="mb-3 form-group">
+        <label for="inputEmail" class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="email" #inputEmail
+          [ngClass]="{'is-invalid': (loginForm.get('email').dirty 
+              || loginForm.get('email').touched) 
+              && !loginForm.get('email').valid}">
+        <div *ngIf="!loginForm.get('email').valid" class="invalid-feedback">
+          <div *ngIf="loginForm.get('email').errors.required">La dirección de email es obligatoria</div>
+          <div *ngIf="loginForm.get('email').errors.email">Dirección email incorrecta</div>
+        </div>
+      </div>
+      
+      <div class="mb-3 form-group">
+        <label for="inputPassword" class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password" #inputPassword
+          [ngClass]="{'is-invalid': (loginForm.get('password').dirty 
+              || loginForm.get('password').touched) 
+              && !loginForm.get('password').valid}">
+        <div *ngIf="!loginForm.get('password').valid" class="invalid-feedback">
+          <div *ngIf="loginForm.get('password').errors.required">La clave es obligatoria</div>
+          <div *ngIf="loginForm.get('password').errors.minlength">La clave debe tener al menos 8 caracteres</div>
+        </div>
+      </div>
+      
+      <button class="btn btn-secondary" type="submit" (click)="register()" [disabled]="loginForm.invalid">Submit</button>
+    </form>
+  </div>
+  
+</main>
