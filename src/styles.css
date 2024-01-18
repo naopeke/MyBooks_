@@ -4,8 +4,6 @@ body, html {
 }
 
 body{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/img/fondoM.jpg');
-    background-repeat: repeat;
     background-color:var(--bg-color);
     color: var(--main-color);
     font-family: var(--main-font-family);

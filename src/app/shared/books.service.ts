@@ -3,7 +3,7 @@ import { Book } from '../models/book';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 // https://angular.io/guide/observables
-
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -53,8 +53,8 @@ export class BooksService {
 
   public delete(id:number):Observable<Object>{
     console.log(id);
-    //const httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: id}
-    const httpOptions = {headers: null, body: id};
+    const httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: id}
+    // const httpOptions = {headers: null, body: id};
     return this.http.delete(this.url2, httpOptions);
   };
 };

@@ -5,32 +5,26 @@
     font-family: var(--main-font-family);
 }
 
-
-.backBtn-wrapper{
-    /* border: 2px solid red; */
-    padding-top:80px;
-    padding-left: 80px;
-
+body {
+    background-image: url('/assets/img/about-bg.jpg');
+    background-repeat: repeat;
 }
 
-.backBtn{
-    color:white;
-    width: 100px;
-}
 
-.container {
+
+main {
     display:flex;
     justify-content: center;
 }
 
 .form-wrapper{
     /* border:2px solid red; */
-    padding-top:10px;
+    margin-top:120px;
     margin-bottom:100px;
     width: 300px;
     display: flex;
     justify-content: center;
-    background-color: #FEDBD0;
+    background-color: black;
     border-radius: 30px;
 }
 
@@ -42,9 +36,14 @@
     height: 400px;
     align-items: center;
     line-height: 50px;
-    background-color: #FEDBD0;
+    background-color: black;
     margin-bottom:10px;
     border-radius: 20px;
+}
+
+.form p {
+    color: white;
+    font-size: 30px;
 }
 
 input {
@@ -52,7 +51,7 @@ input {
     font-size: 18px;
     width:240px;
     height:30px;
-    background-color: transparent;
+    background-color: white;
     border-radius: 10px;
     border:1px solid black;
 }

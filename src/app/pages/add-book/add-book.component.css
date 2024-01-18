@@ -5,6 +5,11 @@
     font-family: var(--main-font-family);
 }
 
+body {
+    background-image: url('/assets/img/about-bg.jpg');
+    background-repeat: repeat;
+}
+
 main{
     display: flex;
     justify-content: center;
@@ -17,7 +22,7 @@ main{
     display: flex;
     justify-content: center;
     width:300px;
-    background-color: #FEDBD0;
+    background-color: black;
     border-radius: 30px;
 }
 
@@ -29,7 +34,12 @@ main{
     height: 400px;
     align-items: center;
     line-height: 50px;
-    background-color: #FEDBD0;
+    background-color: black;
+}
+
+.form p {
+    color: white;
+    font-size: 30px;
 }
 
 input {
@@ -37,7 +47,7 @@ input {
     font-size: 18px;
     width:240px;
     height:30px;
-    background-color: transparent;
+    background-color: white;
     border-radius: 10px;
     border:1px solid black;
 }

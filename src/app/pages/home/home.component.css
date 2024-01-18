@@ -16,6 +16,10 @@
     height: 50vh;
 } */
 
+body {
+    background-image: url('/assets/img/banner.jpg');
+    background-repeat: repeat;
+}
 
 .top-wrapper{
     /* border:2px solid red; */
