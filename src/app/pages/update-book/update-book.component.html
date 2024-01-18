@@ -1,7 +1,4 @@
 <main>
-    <div class="backBtn-wrapper">
-        <button type="button" class="btn btn-secondary backBtn" (click)="goBack()">Back</button>
-    </div>
     <div class="container">
         <div class="form-wrapper">
             <form class="form">
@@ -30,7 +27,7 @@
                     <input placeholder="Codigo Libro" type="text" class="input" #bookid>
                 </label>
         
-                <button class="btn btn-light" (click)="updateBook(bookid.value, titulo.value, tipo.value, autor.value, precio.value, foto.value)">Modificar Libro</button>
+                <button class="btn btn-light" (click)="modificarLibro(bookid.value, titulo.value, tipo.value, autor.value, precio.value, foto.value)">Modificar Libro</button>
         
                 <!-- Dia 4 -->
                 <!-- <input type="button" class="btn-insertar" (click)="addBooks(bookid, titulo, tipo, autor, precio, foto)" value="Modificar Libro"/> -->

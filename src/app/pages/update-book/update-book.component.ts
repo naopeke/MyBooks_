@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { BooksService } from 'src/app/shared/books.service';
 import { Book } from 'src/app/models/book';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+import { Respuesta } from 'src/app/models/respuesta';
+
 
 @Component({
   selector: 'app-update-book',
@@ -10,29 +12,35 @@ import { Location } from '@angular/common';
   styleUrls: ['./update-book.component.css']
 })
 export class UpdateBookComponent {
-  // public books: Book[];
-  // public book: Book;
-  // public parametro: string;
+  public books: Book[];
+ 
 
-  constructor(public booksService: BooksService, 
-    private router: Router,
-    private location: Location){ }
+  constructor(public apiService: BooksService, 
+              private router: Router,
+              private toastr: ToastrService){ }
 
-  updateBook(bookId:string, title:string, type:string, author:string, price:number, photo:string){
-    // userID as a default
-    let userID = 0;
-    let bookIdIntoNumber = parseInt(bookId, 10);
-    let updateBook = new Book(bookIdIntoNumber, userID, title, type, author, price, photo);
-    this.booksService.edit(updateBook);
-    this.irBooks();
+  modificarLibro(bookId:string, title:string, type:string, author:string, price:number, photo:string){
+    let updatedBook = new Book(parseFloat(bookId), title, type, author, price, photo);
+    console.log(updatedBook);
+    this.apiService.edit(updatedBook).subscribe((resp:Respuesta) =>{
+      console.log(resp);
+      if (resp.error)
+      {
+        this.toastr.warning('El libro no existe.', 'Error',
+        {timeOut:2000, positionClass:'toast-top-center'});
+      }
+      else
+        this.irBooks();
+        this.apiService.books = resp.data;
+        this.toastr.success('Libro modificado satisfactoriamente.', 'Success',
+        {timeOut:2000, positionClass:'toast-top-center'});
+    });
   }
     
   irBooks(){
     this.router.navigate(["/books"]);
 }
 
-  goBack():void{
-    this.location.back();
-}
-  
+ngOnInit():void{ }
+
 }
