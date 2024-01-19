@@ -19,8 +19,8 @@ export class UpdateBookComponent {
               private router: Router,
               private toastr: ToastrService){ }
 
-  modificarLibro(bookId:string, title:string, type:string, author:string, price:number, photo:string){
-    let updatedBook = new Book(parseFloat(bookId), title, type, author, price, photo);
+  modificarLibro(bookId:number, title:string, type:string, author:string, price:number, photo:string){
+    let updatedBook = new Book(bookId, title, type, author, price, photo);
     console.log(updatedBook);
     this.apiService.edit(updatedBook).subscribe((resp:Respuesta) =>{
       console.log(resp);
