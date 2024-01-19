@@ -37,7 +37,7 @@ export class AddBookComponent implements OnInit {
         this.toastr.error('Falta un campo obligatorio,', 'Error',
         {timeOut: 2000, positionClass:'toast-top-center'});
     else {
-      let nuevoLibro: Book = new Book(parseFloat(codigoLibro.value), titulo.value, tipo.value, autor.value, parseFloat(precio.value), foto.value)
+      let nuevoLibro: Book = new Book(parseFloat(codigoLibro.value), titulo.value, tipo.value, autor.value, parseFloat(precio.value), foto.value);
       console.log(nuevoLibro);
 
       this.apiService.add(nuevoLibro)
