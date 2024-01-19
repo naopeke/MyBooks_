@@ -48,7 +48,7 @@ export class AddBookComponent implements OnInit {
         this.irBooks();
         this.toastr.success('Libro agregado satisfactoriamente', 'Success',
         {timeOut: 2000, positionClass:'toast-top-center'});
-
+        // dsepués de añadir, borra el dato
         bookId.value = '';
         title.value = '';
         type.value = '';

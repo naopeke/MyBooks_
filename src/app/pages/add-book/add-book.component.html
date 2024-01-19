@@ -4,33 +4,33 @@
     <div class="form-wrapper">
         <form class="form">
             <p class="title">Añadir libro</p>
-            <label for="titulo">
-                <input placeholder="Título" type="text" class="input" #titulo>
+            <label for="title">
+                <input placeholder="Título" type="text" class="input" #title>
             </label>
     
-            <label for="tipo">
-                <input placeholder="Tapa blanda/dura" type="text" class="input" #tipo>
+            <label for="type">
+                <input placeholder="Tapa blanda/dura" type="text" class="input" #type>
             </label>
     
-            <label for="autor">
-                <input placeholder="Autor" type="text" class="input" #autor>
+            <label for="author">
+                <input placeholder="Autor" type="text" class="input" #author>
             </label>
     
-            <label for="precio">
-                <input placeholder="Precio" type="text" class="input" #precio>
+            <label for="price">
+                <input placeholder="Precio" type="text" class="input" #price>
             </label>
     
-            <label for="foto">
-                <input placeholder="Photo" type="text" class="input" #foto>
+            <label for="photo">
+                <input placeholder="Photo" type="text" class="input" #photo>
             </label>
     
-            <label for="bookid">
+            <label for="bookId">
                 <input placeholder="Codigo Libro" type="text" class="input" #bookid>
             </label>
     
             <!-- <input class="btn btn-primary" type="button" value="Insertar Libro"> -->
             <!-- 上のidと一致する必要あり -->
-            <button class="btn btn-light" type="button" (click)="insertarLibro(bookid.value, titulo.value, tipo.value, autor.value, precio.value, foto.value)">Insertar Libro</button>
+            <button class="btn btn-light" type="button" (click)="insertarLibro(bookid.value, title.value, type.value, author.value, price.value, photo.value)">Insertar Libro</button>
     
             <!-- <input type="button" class="btn-insertar" (click)="addBooks(bookid, titulo, tipo, autor, precio, foto)" value="Insertar Libro"/> -->
         </form>

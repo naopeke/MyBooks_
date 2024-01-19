@@ -67,8 +67,19 @@ export class BooksComponent implements OnInit {
       });
     }
     }
-    
+  
+  refresh():void {
+    this.apiService.getAll().subscribe((data: Book[]) =>{
+      this.books = data;
+    })
+  }
 
+  // agregarLibro(newBook: Book):void{
+  //   this.apiService.add(newBook).subscribe((resp:Respuesta) =>{
+  //     console.log(resp);
+  //     this.refresh();
+  //   })
+  // }
 
 
   eliminarLibro(bookId: number):void{
@@ -80,7 +91,7 @@ export class BooksComponent implements OnInit {
       }
       else
         this.apiService.books = resp.data;
-        this.mostrarTodosLosLibros();
+        this.refresh();
         this.toastr.success('Ha eliminado correctamente', 'Success',
         {timeOut:2000, positionClass:'toast-top-center'});
 
