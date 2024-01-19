@@ -54,7 +54,6 @@ export class BooksService {
   public delete(id:number):Observable<Object>{
     console.log(id);
     const httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: id}
-    // const httpOptions = {headers: null, body: id};
     return this.http.delete(this.url2, httpOptions);
   };
 };

@@ -68,7 +68,7 @@ export class BooksComponent implements OnInit {
     }
     }
     
-    
+
 
 
   eliminarLibro(bookId: number):void{
@@ -80,6 +80,7 @@ export class BooksComponent implements OnInit {
       }
       else
         this.apiService.books = resp.data;
+        this.mostrarTodosLosLibros();
         this.toastr.success('Ha eliminado correctamente', 'Success',
         {timeOut:2000, positionClass:'toast-top-center'});
 
