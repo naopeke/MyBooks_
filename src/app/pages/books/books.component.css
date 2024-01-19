@@ -73,49 +73,12 @@ body {
     justify-content: center;
 }
 
-.container2{
-    margin-top:50px;
-    display:flex;
-    justify-content: center;
-}
-
-.form-wrapper{
+.card-detail{
     /* border:2px solid red; */
-    margin-bottom:100px;
+    margin-top:150px;
     display: flex;
     justify-content: center;
 }
-
-.form{
-    /* border:2px solid white; */
-    display: flex;
-    flex-direction: column;
-    width: 240px;
-    height: 400px;
-    align-items: center;
-    line-height: 50px;
-}
-
-input {
-    color:var(--main-color);
-    font-size: 18px;
-    width:240px;
-    height:30px;
-    background-color: transparent;
-    border-radius: 10px;
-    border:1px solid rgba(255, 255, 255, 0.322);
-}
-
-::placeholder{
-    text-align: center;
-}
-
-/* button {
-    width:100px;
-    height:30px;
-    border-radius: 8px;
-    margin-top: 8px;
-} */
 
 .btn-insertar{
     background-color: darkred;

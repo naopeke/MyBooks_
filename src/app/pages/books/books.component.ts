@@ -14,6 +14,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class BooksComponent implements OnInit {
   public books: Book[];
+  public bookId: string;
+  public bookDetail: any;
 
   //URLパラメータから取得したデータを格納するためのプロパティ
   public parametro: string;
@@ -30,41 +32,43 @@ export class BooksComponent implements OnInit {
     //app.routing.module.ts内  {path: "add-book/:bookid", component:AddBookComponent},
     this.parametro = this.rutaActiva.snapshot.params.bookid;
     this.apiService.books = null;
-    this.apiService.getAll().subscribe((resp:Respuesta) =>{
-      console.log(resp);
-      if(resp.error){
-        this.toastr.warning('No hay ningún libro disponible', 'Error',
-        {timeOut:2000, positionClass:'toast-top-center'});
-      }
-      else
-        this.apiService.books = resp.data;
-    })
   }
 
-  // mostrarTodosLosLibro(){
-  //   this.apiService.getAll().subscribe((resp:Respuesta) =>{
-  //     console.log(resp);
-  //     if(resp.error){
-  //       this.toastr.warning('No hay ningún libro disponible', 'Error',
-  //       {timeOut:2000, positionClass:'toast-top-center'});
-  //     }
-  //     else
-  //       this.apiService.books = resp.data;
-  //   })
-  // }
-
-  mostrarUnLibro(searchInputValue: string):void{
-    let bookId = parseFloat(searchInputValue);
-    this.apiService.getOne(bookId).subscribe((resp:Respuesta) =>{
-      console.log(resp);
-      if(resp.error){
-        this.toastr.warning('No hay ningún libro disponible', 'Error',
-        {timeOut:2000, positionClass:'toast-top-center'});
-      }
-      else
-        this.apiService.books = resp.data;
-    })
+  mostrarTodosLosLibros(): void {
+    this.apiService.getAll().subscribe((data: any) => {
+      console.log('API Response:', data);
+      this.books = data; 
+      console.log('Books:', this.books); 
+    }, error => {
+      console.error('Error:', error);
+    });
   }
+
+  mostrarUnLibro(searchInput: string):void{
+    // cuando search bar está vacio, muestra todos los libros.
+    if(searchInput === ''){
+      this.apiService.getAll().subscribe((resp: Respuesta) =>{
+        this.books = resp.data;
+      });
+    } else {
+
+      let bookId = parseFloat(searchInput);
+      this.apiService.getOne(bookId).subscribe((resp:Respuesta) =>{
+        console.log(resp);
+        // si no puede obtener id adecuado, warning
+        if(resp.error){
+          this.toastr.warning('No existe este codigo.', 'Error',
+          {timeOut:2000, positionClass:'toast-top-center'});
+        }
+        // si ha podido obtener id
+        else
+          this.apiService.books = resp.data;
+          this.router.navigate(['/books', bookId]);
+      });
+    }
+    }
+    
+    
 
 
   eliminarLibro(bookId: number):void{
@@ -78,38 +82,34 @@ export class BooksComponent implements OnInit {
         this.apiService.books = resp.data;
         this.toastr.success('Ha eliminado correctamente', 'Success',
         {timeOut:2000, positionClass:'toast-top-center'});
-        this.refreshBooks();
-    });
-  }
 
-  //削除された後にビューを更新。Books.component.htmlにdeteleFromChildをイベントバインド。 (bookDeleted)="refreshBooks()">
-  //削除ボタンクリックで、ビューがリフレッシュされて更新される。
-  refreshBooks(){
-    this.apiService.getAll().subscribe((resp:Respuesta) =>{
-      this.apiService.books = resp.data;
     });
   }
 
 
-  //  ngOnInit(): void {
-  //   this.apiService.getAll().subscribe((resp:Respuesta) =>{
-  //     console.log(resp);
-  //     console.log('Books:', this.books);
-  //       this.books = resp.data;
 
-  // })}
-
-
- 
-    ngOnInit(): void {
-      this.apiService.getAll().subscribe((data: any) => {
-        console.log('API Response:', data);
-        this.books = data; // ここで配列を割り当て
-        console.log('Books:', this.books); // 割り当て後の状態を確認
-      }, error => {
-        console.error('Error:', error);
+  detalleLibro(): void {
+    // Obtener bookId desde URL parametro (lo que nos enseñó José)
+    this.parametro = this.rutaActiva.snapshot.params.bookid;
+  
+    if (this.parametro) {
+      let bookId = parseFloat(this.parametro);
+      this.apiService.getOne(bookId).subscribe((resp: Respuesta) => {
+        console.log("API Response:", resp);
+        // data:Array [{...}] asi que hay que elegir data[0]↓
+        this.bookDetail = resp.data[0];
+        console.log("Book Detail:", this.bookDetail);
       });
     }
-    
   }
   
+
+
+
+
+  ngOnInit(): void {
+    this.mostrarTodosLosLibros();
+    this.detalleLibro();
+  }
+  
+}

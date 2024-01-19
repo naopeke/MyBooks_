@@ -41,7 +41,7 @@ import { FormLoginComponent } from './components/form-login/form-login.component
     AddBookComponent,
     UpdateBookComponent,
     LoginComponent,
-    FormLoginComponent
+    FormLoginComponent,
   ],
   imports: [
     BrowserModule,

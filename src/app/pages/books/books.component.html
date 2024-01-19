@@ -1,27 +1,37 @@
 <!-- 親コンポーネント books ：本の追加や管理 parent : add and edit books-->
 <body>
     
-
+<div *ngIf="!bookDetail">
 <div class="search-wrapper">
     <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search by ID" aria-label="Search" #searchInput>
-        <button class="btn btn-outline-success" type="button" (click)="mostrarUnLibro(searchInput.value)">BUSCAR</button>
+        <button class="btn btn-outline-success" type="submit" (click)="mostrarUnLibro(searchInput.value)">BUSCAR</button>
     </form>
 </div>
+</div>
+<!-- si hay array de books -->
+<div *ngIf="!bookDetail">
+    <div class="container" *ngIf="books && books.length > 0">
+        <div class="card-wrapper">
+            <app-card *ngFor="let book of books; let i = index" 
+                      [childCard]="book"
+                      [isEven]="i % 2 === 0"
+                      (deleteFromChild)="eliminarLibro($event)">
+            </app-card>
+        </div>
+    </div> 
+</div>
 
-<!-- books配列がある場合に表示 -->
-<div class="container" *ngIf="books && books.length > 0">
-    <div class="card-wrapper">
-        <app-card *ngFor="let book of books; let i = index" 
-                  [childCard]="book"
-                  [isEven]="i % 2 === 0"
-                  (deleteFromChild)="eliminarLibro($event)">
-        </app-card>
+<div *ngIf="bookDetail" [ngClass]="{'card-detail': bookDetail}">
+    <div class="book-detail">
+        <app-card [childCard]="bookDetail"></app-card>
     </div>
-</div> 
 
-<!-- books配列が空か未定義の場合に表示 -->
+</div>
+
+<!-- Si no hay dato en array de books -->
 <div *ngIf="!books || books.length === 0">
     <h1>No libros disponibles</h1>
 </div>
+
 </body>
