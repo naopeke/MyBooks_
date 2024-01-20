@@ -170,7 +170,7 @@ export class BooksComponent implements OnInit {
   });
   }
 
-
+  //para mostrar una tarjeta de getOne en una pagina de parametro 
   detalleLibro(): void {
     if (this.parametro) {
       let bookId = parseFloat(this.parametro);
