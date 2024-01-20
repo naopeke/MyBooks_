@@ -26,18 +26,18 @@ export class AddBookComponent implements OnInit {
   }
             
 
-  insertarLibro(bookId:HTMLInputElement, title:HTMLInputElement, type:HTMLInputElement, author:HTMLInputElement, price:HTMLInputElement, photo:HTMLInputElement){
+  insertarLibro(codigoLibro:HTMLInputElement, titulo:HTMLInputElement, tipo:HTMLInputElement, autor:HTMLInputElement, precio:HTMLInputElement, foto:HTMLInputElement){
     
-    if (bookId.value == ''
-        || title.value == ''
-        || type.value == ''
-        || author.value == ''
-        || price.value == ''
-        || photo.value == '')
+    if (codigoLibro.value == ''
+        || titulo.value == ''
+        || tipo.value == ''
+        || autor.value == ''
+        || precio.value == ''
+        || foto.value == '')
         this.toastr.error('Falta un campo obligatorio,', 'Error',
         {timeOut: 2000, positionClass:'toast-top-center'});
     else {
-      let nuevoLibro: Book = new Book(parseFloat(bookId.value), title.value, type.value, author.value, parseFloat(price.value), photo.value)
+      let nuevoLibro: Book = new Book(parseFloat(codigoLibro.value), titulo.value, tipo.value, autor.value, parseFloat(precio.value), foto.value);
       console.log(nuevoLibro);
 
       this.apiService.add(nuevoLibro)
@@ -48,13 +48,13 @@ export class AddBookComponent implements OnInit {
         this.irBooks();
         this.toastr.success('Libro agregado satisfactoriamente', 'Success',
         {timeOut: 2000, positionClass:'toast-top-center'});
-        // dsepués de añadir, borra el dato
-        bookId.value = '';
-        title.value = '';
-        type.value = '';
-        author.value = '';
-        price.value = '';
-        photo.value = '';
+
+        codigoLibro.value = '';
+        titulo.value = '';
+        tipo.value = '';
+        autor.value = '';
+        precio.value = '';
+        foto.value = '';
         this.apiService.book = null;
       } else
         this.toastr.error('El libro ya existe', 'Error',

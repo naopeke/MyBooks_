@@ -33,7 +33,7 @@ main {
     display: flex;
     flex-direction: column;
     width: 240px;
-    height: 400px;
+    height: 460px;
     align-items: center;
     line-height: 50px;
     background-color: black;
@@ -44,6 +44,7 @@ main {
 .form p {
     color: white;
     font-size: 30px;
+    padding-top:30px;
 }
 
 input {
@@ -62,4 +63,6 @@ input {
 
 .btn{
     margin-top: 20px;
+    width: 130px;
+    height: 48px;
 }

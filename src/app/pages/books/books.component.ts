@@ -1,7 +1,7 @@
 // 親コンポーネント　：本の追加や管理 parent : add and edit books
 
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/models/book';
 import { BooksService } from 'src/app/shared/books.service';
 import { Respuesta } from 'src/app/models/respuesta';
@@ -17,101 +17,179 @@ export class BooksComponent implements OnInit {
   public bookId: string;
   public bookDetail: any;
 
-  //URLパラメータから取得したデータを格納するためのプロパティ
+  // A property for storing data retrieved from URL parameters
   public parametro: string;
 
-  //依存性注入を利用してBooksService、Router、ActivatedRouteをインスタンス化
+  // for instance
   constructor(public  apiService: BooksService,
               private toastr: ToastrService,
               private router: Router,
               private rutaActiva: ActivatedRoute,
   ) {  
 
-    // URLから'bookid'パラメータを取得: /books/1の場合 this.parametroは1
-    //https://angular.jp/start/start-routing
-    //app.routing.module.ts内  {path: "add-book/:bookid", component:AddBookComponent},
+
+    // get bookid from URL
     this.parametro = this.rutaActiva.snapshot.params.bookid;
     this.apiService.books = null;
   }
 
-  mostrarTodosLosLibros(): void {
-    this.apiService.getAll().subscribe((data: any) => {
-      console.log('API Response:', data);
-      this.books = data; 
-      console.log('Books:', this.books); 
-    }, error => {
-      console.error('Error:', error);
-    });
-  }
+//Codigo Error salió para que usa  next, error, complete (Aunque he comprobado si funciona los ambos)
+//'(next?: (value: Object) => void, error?: (error: any) => void, complete?: () => void): Subscription' is deprecated.ts(6385)
+//Observable.d.ts(51, 9): The declaration was marked as deprecated here.
+//(method) Observable<Object>.subscribe(next?: (value: Object) => void, error?: (error: any) => void, complete?: () => void): Subscription (+1 overload)
+//@deprecated — Instead of passing separate callback arguments, use an observer argument. Signatures taking separate callback arguments will be removed in v8. Details: https://rxjs.dev/deprecations/subscribe-arguments
 
-  mostrarUnLibro(searchInput: string):void{
-    // cuando search bar está vacio, muestra todos los libros.
-    if(searchInput === ''){
-      this.apiService.getAll().subscribe((resp: Respuesta) =>{
-        this.books = resp.data;
-      });
-    } else {
+//https://dev.to/barisbll/rxjs-7-observable-observer-and-subscription-37fk
 
-      let bookId = parseFloat(searchInput);
-      this.apiService.getOne(bookId).subscribe((resp:Respuesta) =>{
-        console.log(resp);
-        // si no puede obtener id adecuado, warning
-        if(resp.error){
-          this.toastr.warning('No existe este codigo.', 'Error',
-          {timeOut:2000, positionClass:'toast-top-center'});
-        }
-        // si ha podido obtener id
-        else
-          this.apiService.books = resp.data;
-          this.router.navigate(['/books', bookId]);
-      });
-    }
-    }
-  
-  refresh():void {
-    this.apiService.getAll().subscribe((data: Book[]) =>{
-      this.books = data;
-    })
-  }
+  // mostrarTodosLosLibros(): void {
+  //   this.apiService.getAll().subscribe((data: any) => {
+  //     console.log('API Response:', data);
+  //     this.books = data; 
+  //     console.log('Books:', this.books); 
+  //   }, error => {
+  //     console.error('Error:', error);
+  //   });
+  // }
 
-  // agregarLibro(newBook: Book):void{
-  //   this.apiService.add(newBook).subscribe((resp:Respuesta) =>{
+  // mostrarUnLibro(searchInput: string):void{
+  //   if(searchInput === ''){
+  //     this.apiService.getAll().subscribe((resp: Respuesta) =>{
+  //       this.books = resp.data;
+  //     });
+
+  //   } else {
+  //     let bookId = parseFloat(searchInput);
+  //     this.apiService.getOne(bookId).subscribe((resp:Respuesta) =>{
+  //       console.log(resp);
+  //       if(resp.error){
+  //         this.toastr.warning('No existe este codigo.', 'Error',
+  //         {timeOut:2000, positionClass:'toast-top-center'});
+  //       }
+  //       else
+  //         this.apiService.books = resp.data;
+  //         this.router.navigate(['/books', bookId]);
+  //     });
+  //   }
+  //   }
+
+    // eliminarLibro(bookId: number): void {
+  //   this.apiService.delete(bookId).subscribe((resp: Respuesta) => {
   //     console.log(resp);
-  //     this.refresh();
-  //   })
+  //     this.books = this.books.filter(book => book.id_book !== bookId);
+  //     this.toastr.success('Libro eliminado correctamente', 'Success');
+  //   }, error => {
+  //     console.error('Error:', error);
+  //     this.toastr.error('No se pudo eliminar el libro', 'Error');
+  //   });
+  // }
+
+  // detalleLibro(): void {
+  //   // Obtener bookId desde URL parametro (lo que nos enseñó José)
+  //   // this.parametro = this.rutaActiva.snapshot.params.bookid;
+  
+  //   if (this.parametro) {
+  //     let bookId = parseFloat(this.parametro);
+  //     this.apiService.getOne(bookId).subscribe((resp: Respuesta) => {
+  //       console.log("API Response:", resp);
+  //       // data:Array [{...}] asi que hay que elegir data[0]↓
+  //       this.bookDetail = resp.data[0];
+  //       console.log("Book Detail:", this.bookDetail);
+  //     });
+  //   }
   // }
 
 
-  eliminarLibro(bookId: number):void{
-    this.apiService.delete(bookId).subscribe((resp:Respuesta) =>{
-      console.log(resp);
-      if(resp.error){
-        this.toastr.warning('No he podido eliminar', 'Error',
-        {timeOut:2000, positionClass:'toast-top-center'});
+  mostrarTodosLosLibros(): void {
+    this.apiService.getAll().subscribe({
+      next: (data: any) => {
+        console.log('API Response:', data);
+        this.books = data; 
+        console.log('Books:', this.books); 
+      },
+      error: error => {
+        console.error('Error:', error);
+      },
+      complete: () => {
+        console.log('Completed')
       }
-      else
-        this.apiService.books = resp.data;
-        this.refresh();
-        this.toastr.success('Ha eliminado correctamente', 'Success',
-        {timeOut:2000, positionClass:'toast-top-center'});
-
     });
+    }
+
+
+  mostrarUnLibro(searchInput: string):void{
+    if(searchInput === ''){
+      this.apiService.getAll().subscribe({
+        next: (resp: Respuesta) =>{
+          this.books = resp.data;
+        },
+        error: error => {
+          console.error('Error:', error);
+        }
+      });
+
+    } else {
+      let bookId = parseFloat(searchInput);
+      this.apiService.getOne(bookId).subscribe({
+        next: (resp:Respuesta) =>{
+          console.log(resp);
+        // si no puede obtener id adecuado, warning
+          if(resp.error){
+            this.toastr.warning('No existe este codigo.', 'Error',
+            {timeOut:2000, positionClass:'toast-top-center'});
+          } else {
+        // si ha podido obtener id
+            this.apiService.books = resp.data;
+            this.router.navigate(['/books', bookId]);
+          }
+        },
+        error: error => {
+          console.error(error);
+        },
+        complete: () => {
+          console.log('Completed');
+        }
+    });
+    }
   }
 
+    
+  eliminarLibro(bookId: number): void {
+  this.apiService.delete(bookId).subscribe({
+    next: (resp: Respuesta ) => {
+      console.log(resp);
+      this.books = this.books.filter(book => book.id_book !== bookId);
+      this.toastr.success('Libro eliminado correctamente', 'Success');
+    },
+    error: error => {
+      console.error('Error:', error);
+      this.toastr.error('No se pudo eliminar el libro', 'Error');
+    },
+    complete: () => {
+      console.log('Completed');
+    }
+  });
+  }
 
-
+  //para mostrar una tarjeta de getOne en una pagina de parametro 
   detalleLibro(): void {
-    // Obtener bookId desde URL parametro (lo que nos enseñó José)
-    this.parametro = this.rutaActiva.snapshot.params.bookid;
-  
     if (this.parametro) {
       let bookId = parseFloat(this.parametro);
-      this.apiService.getOne(bookId).subscribe((resp: Respuesta) => {
-        console.log("API Response:", resp);
-        // data:Array [{...}] asi que hay que elegir data[0]↓
-        this.bookDetail = resp.data[0];
-        console.log("Book Detail:", this.bookDetail);
+      this.apiService.getOne(bookId).subscribe({
+        next: (resp: Respuesta) => {
+          console.log("API Response:", resp);
+          //Está metido el dato como data:Array [{...}] asi que hay que elegir data[0]↓
+          this.bookDetail = resp.data[0];
+          console.log("Book Detail:", this.bookDetail);
+        },
+        error: error => {
+          console.error('Error:', error);
+        },
+        complete: () => {
+          console.log('Completed');
+        }
       });
+    } else {
+      console.log('Error occured');
     }
   }
   
