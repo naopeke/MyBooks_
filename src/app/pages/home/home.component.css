@@ -18,7 +18,8 @@
 
 body {
     background-image: url('/assets/img/banner.jpg');
-    background-repeat: repeat;
+    background-repeat: no-repeat;
+    background-color: blanchedalmond;
 }
 
 .top-wrapper{
@@ -34,4 +35,5 @@ h1{
 
 span{
     color:white;
+    font-size: 23px;
 }

@@ -17,6 +17,7 @@ form p{
     /* border:2px red solid; */
     margin-top: 200px;
     padding-bottom:24px;
+    height: 300px;
     width: 350px;
     border-radius: 30px;
     background-color: #F9AA33;
@@ -32,6 +33,40 @@ form {
     background-color: #F9AA33;
     width: 300px;
 }
+
+.title {
+    font-size: 28px;
+    color: #344955;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    padding-top: 30px;
+  }
+
+  .title::before,.title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: #4A6572;
+  }
+  
+  .title::before {
+    width: 18px;
+    height: 18px;
+    background-color: #4A6572;
+  }
+  
+  .title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+  }
 
 .invalid-feedback {
     color: red;
