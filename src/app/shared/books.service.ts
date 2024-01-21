@@ -36,7 +36,8 @@ export class BooksService {
 
   public getOne(id_book: number):Observable<Object>{
     console.log(id_book);
-    return this.http.get(this.url2 + '/' + id_book);
+    let urlId = `${this.url2}?id=${id_book}`;
+    return this.http.get(urlId);
   };
 
   //post

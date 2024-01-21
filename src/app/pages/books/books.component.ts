@@ -139,7 +139,7 @@ export class BooksComponent implements OnInit {
           } else {
         // si ha podido obtener id
             this.apiService.books = resp.data;
-            this.router.navigate(['/books', bookId]);
+            this.router.navigate(['/books'], { queryParams: { id: bookId } });
           }
         },
         error: error => {
@@ -172,25 +172,26 @@ export class BooksComponent implements OnInit {
 
   //para mostrar una tarjeta de getOne en una pagina de parametro 
   detalleLibro(): void {
-    if (this.parametro) {
-      let bookId = parseFloat(this.parametro);
-      this.apiService.getOne(bookId).subscribe({
-        next: (resp: Respuesta) => {
-          console.log("API Response:", resp);
-          //Está metido el dato como data:Array [{...}] asi que hay que elegir data[0]↓
-          this.bookDetail = resp.data[0];
-          console.log("Book Detail:", this.bookDetail);
-        },
-        error: error => {
-          console.error('Error:', error);
-        },
-        complete: () => {
-          console.log('Completed');
-        }
-      });
-    } else {
-      console.log('Error occured');
-    }
+    this.rutaActiva.queryParams.subscribe(params => {
+      const bookId = params['id'];
+      if (bookId) {
+        this.apiService.getOne(parseFloat(bookId)).subscribe({
+          next: (resp: Respuesta) => {
+            console.log("API Response:", resp);
+            this.bookDetail = resp;
+            console.log("Book Detail:", this.bookDetail);
+          },
+          error: error => {
+            console.error('Error:', error);
+          },
+          complete: () => {
+            console.log('Completed');
+          }
+        });
+      } else {
+        console.log('No query param provided');
+      }
+    });
   }
   
 
