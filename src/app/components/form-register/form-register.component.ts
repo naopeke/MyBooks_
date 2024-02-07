@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { UsersService } from 'src/app/shared/users.service';
+import { Respuesta } from 'src/app/models/respuesta';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-form-register',
@@ -10,14 +13,35 @@ export class FormRegisterComponent implements OnInit {
   [x: string]: any;
   public registerForm: FormGroup;
 
-  constructor(private fromBuilder: FormBuilder){
+
+  constructor(private fromBuilder: FormBuilder, 
+              private apiService: UsersService,
+              private toastr: ToastrService){ 
     this.buildForm();
   }
 
   public register(){
     const user = this.registerForm.value;
     console.log(user);
-  }
+
+    this.apiService.register(user).subscribe({
+      next: (resp: Respuesta) => {
+        console.log(resp);
+        this.toastr.success('Hemos fallado registrarse. Intenta de nuevo.', 'Error',
+        {timeOut:2000, positionClass:'toast-top-center'})
+      },
+      error: error => {
+        console.error('Error: ', error);
+        this.toastr.success('Hemos fallado registrarse. Intenta de nuevo.', 'Error',
+        {timeOut:2000, positionClass:'toast-top-center'});
+      },
+      complete: () => {
+        console.log('Completed');
+      }
+
+      })
+    }
+
 
   private buildForm(){
     const minPassLength = 8;
@@ -67,6 +91,7 @@ export class FormRegisterComponent implements OnInit {
         return !passwordValid ? {passwordStrength:true}: null;
     }
   }
+
 
   ngOnInit(): void {
     

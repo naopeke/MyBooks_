@@ -23,6 +23,8 @@ import { UpdateBookComponent } from './pages/update-book/update-book.component';
 import { BooksService } from './shared/books.service';
 import { LoginComponent } from './pages/login/login.component';
 import { FormLoginComponent } from './components/form-login/form-login.component';
+import { UsersService } from './shared/users.service';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { FormLoginComponent } from './components/form-login/form-login.component
     BrowserAnimationsModule,
     ToastrModule.forRoot() 
   ],
-  providers: [BooksService],
+  providers: [
+    BooksService,
+    UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
