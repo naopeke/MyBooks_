@@ -18,7 +18,7 @@ header{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    color: var(--main-color);
+    color: black;
     background-color: var(--bg-color);
 }
 

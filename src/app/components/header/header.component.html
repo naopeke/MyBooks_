@@ -1,17 +1,15 @@
-<!-- <p>header works!</p> -->
 <header>
         <div class="logo">
             <img src="/assets/img/logo.png" alt="fondo1">
         </div>
 
         <nav class="navbar">
-        <a routerLink="/home">Home</a>
-        <a routerLink="/profile">Profile</a>
-        <a routerLink="/add-book">AddBook</a>
-        <a routerLink="/update-book">UpdateBook</a>
-        <a routerLink="/books">BOOKS</a>
-        <a routerLink="/register">REGISTER</a>
-        <a routerLink="/login">LOGIN</a>
-        <!-- <a routerLink="/temperature">Temperature</a> -->
+        <a routerLink="/home" *ngIf="!isAuthenticated">Home</a>
+        <a routerLink="/profile" *ngIf="isAuthenticated">Profile</a>
+        <a routerLink="/add-book" *ngIf="isAuthenticated">AddBook</a>
+        <a routerLink="/update-book" *ngIf="isAuthenticated">UpdateBook</a>
+        <a routerLink="/books" *ngIf="isAuthenticated">BOOKS</a>
+        <a routerLink="/register" *ngIf="!isAuthenticated">REGISTER</a>
+        <a routerLink="/login" *ngIf="!isAuthenticated">LOGIN</a>
         </nav>
 </header>
