@@ -14,7 +14,6 @@ export class ProfileComponent implements OnInit {
 
   constructor(){
     this.myUser = new User(1, 'John Ronald Reuel', 'Tolkien', 'jjtolkien@tolkien.org', 'https://i0.wp.com/elanillounico.com/wp-content/uploads/2015/03/JRR-Tolkien15.jpg?resize=723%2C1024&ssl=1', 'Gandulf1234');
-    this.myClassCSS = "class1"
     this.isHidden = true;
   }
 

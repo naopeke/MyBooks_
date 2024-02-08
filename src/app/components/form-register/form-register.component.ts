@@ -20,6 +20,11 @@ export class FormRegisterComponent implements OnInit {
     this.buildForm();
   }
 
+
+  public irBooks(){
+    this.router.navigate(["/books"]);
+  }
+
   public register(){
     const user = this.registerForm.value;
     console.log(user);
