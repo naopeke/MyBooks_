@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class UsersService implements OnInit{
 
   private url = "http://localhost:3000";
 
@@ -62,10 +62,19 @@ export class UsersService {
     return this.currentUserSubject.value;
   }
 
+
+
   public edit(user: User): Observable<any>{
     console.log(user);
     const editProfileUrl = this.url + '/profile';
-    return this.http.post(editProfileUrl, user);
+    return this.http.put(editProfileUrl, user)
+  }
+
+
+
+
+  ngOnInit(): void {
+      
   }
   
 }

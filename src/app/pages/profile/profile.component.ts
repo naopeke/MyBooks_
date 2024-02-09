@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { FormsModule } from '@angular/forms';
+import { UsersService } from 'src/app/shared/users.service';
+import { Respuesta } from 'src/app/models/respuesta';
+import { ToastrService } from 'ngx-toastr';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -8,12 +12,16 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  public myUser: User;
+ // null : el caso de no está logueado
+  public myUser: User | null;
   public myClassCSS :string;
   public isHidden: boolean;
 
-  constructor(){
-    this.myUser = new User(1, 'John Ronald Reuel', 'Tolkien', 'jjtolkien@tolkien.org', 'https://i0.wp.com/elanillounico.com/wp-content/uploads/2015/03/JRR-Tolkien15.jpg?resize=723%2C1024&ssl=1', 'Gandulf1234');
+  constructor(
+    private toastr: ToastrService,
+    private usersService :UsersService,
+    private http: HttpClient
+  ){
     this.isHidden = true;
   }
 
@@ -21,41 +29,43 @@ export class ProfileComponent implements OnInit {
     return this.myUser.nombreCompleto();
   }
 
+
+
+
   modificar(newName: HTMLInputElement, newLastName: HTMLInputElement, newEmail: HTMLInputElement, newPhoto: HTMLInputElement){
-  
-    // this.myUser.name = newName.value;
-    // this.myUser.last_name = newLastName.value;
-    // this.myUser.email = newEmail.value;
-    // this.myUser.photo = newPhoto.value;
-    // console.log(this.myUser.name);
+    const currentUser = this.usersService.getCurrentUser();
 
-    if (newName.value !== '') {
-      this.myUser.name = newName.value;
+  // si no es null currentUser ( está logueado ), new User
+  if (currentUser && currentUser.id_user){
+    let updatedUser = new User (currentUser.id_user, newName.value, newLastName.value, newEmail.value, newPhoto.value, currentUser.password);
+    console.log(updatedUser);
+  
+    this.usersService.edit(updatedUser).subscribe((resp:Respuesta) =>{
+      console.log(resp);
+    if (resp.error)
+    {
+      this.toastr.warning('El usuario no existe.', 'Error',
+      {timeOut:2000, positionClass:'toast-top-center'});
     }
-    if (newLastName.value !== '') {
-      this.myUser.last_name = newLastName.value;
-    }
-    if (newEmail.value !== '') {
-      this.myUser.email = newEmail.value;
-    }
-    if (newPhoto.value !== '') {
-      this.myUser.photo = newPhoto.value;
-    }
-    this.isHidden = false;
-    console.log(this.myUser.name);
+    else
+      this.usersService.user = resp[0];
+      this.toastr.success('usuario modificado satisfactoriamente.', 'Success',
+      {timeOut:2000, positionClass:'toast-top-center'});
+  });
+  } else {
+    this.toastr.error('Lo está logueado.', 'Error',
+    {timeOut:2000, positionClass:'toast-top-center'});
   }
 
-  // enviar(name: string, lastName: string, email: string, photo: string) {
-  //   this.myUser.name = name;
-  //   this.myUser.last_name = lastName;
-  //   this.myUser.email = email;
-  //   this.myUser.photo = photo;
-  //   console.log('Updated user:', this.myUser);
-  // }
+   
+}
   
-
-  
+    
   ngOnInit():void{
-
-  }
+    // get dato del logueado y update myUser para mostrar en form-left en perfil
+    const currentUserData = this.usersService.getCurrentUser();
+    if (currentUserData) {
+    this.myUser = new User(currentUserData.id_user, currentUserData.name, currentUserData.last_name, currentUserData.email, currentUserData.photo, currentUserData.password);
+    }
+}
 }
