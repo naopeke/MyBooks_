@@ -4,12 +4,12 @@
         </div>
 
         <nav class="navbar">
-        <a routerLink="/home" *ngIf="!isAuthenticated">Home</a>
-        <a routerLink="/profile" *ngIf="isAuthenticated">Profile</a>
-        <a routerLink="/add-book" *ngIf="isAuthenticated">AddBook</a>
-        <a routerLink="/update-book" *ngIf="isAuthenticated">UpdateBook</a>
+        <a routerLink="/home" *ngIf="!isAuthenticated">HOME</a>
+        <a routerLink="/profile" *ngIf="isAuthenticated">PROFILE</a>
+        <a routerLink="/add-book" *ngIf="isAuthenticated">ADD BOOK</a>
+        <a routerLink="/update-book" *ngIf="isAuthenticated">UPDATE BOOK</a>
         <a routerLink="/books" *ngIf="isAuthenticated">BOOKS</a>
         <a routerLink="/register" *ngIf="!isAuthenticated">REGISTER</a>
-        <a routerLink="/login" *ngIf="!isAuthenticated">LOGIN</a>
+        <a routerLink="/login" *ngIf="!isAuthenticated">LOG IN</a>
         </nav>
 </header>

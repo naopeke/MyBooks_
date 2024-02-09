@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Book } from '../models/book';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 // https://angular.io/guide/observables
-import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,16 +16,14 @@ export class BooksService {
 
   constructor (private http: HttpClient) {}
 
-  // https://angular.io/guide/observables
-  //https://codecraft.tv/courses/angular/http/http-with-observables/
-  public getAll():Observable<Object>
-  {
-    return this.http.get(this.url2);
+  public getAll(id_user: number):Observable<Object>{
+    let urlId = `${this.url2}?id_user=${id_user}`;
+    return this.http.get(urlId);
   };
 
-  public getOne(id_book: number):Observable<Object>{
+  public getOne(id_book: number, id_user: number):Observable<Object>{
     console.log(id_book);
-    let urlId = `${this.url2}?id=${id_book}`;
+    let urlId = `${this.url2}?id_user=${id_user}&id_book=${id_book}`;
     return this.http.get(urlId);
   };
 

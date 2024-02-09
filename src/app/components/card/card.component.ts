@@ -11,24 +11,17 @@ import { Respuesta } from 'src/app/models/respuesta';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent {
-//親コンポーネントから子コンポーネントに値を渡すときに使用
-//親コンポーネントから値を受け取るためのプロパティを定義
-//今回は、カードのインデックスを@Inputプロパティとして受け取る
-//@Input プロパティ名:データ型;
+
   @Input() childCard: Book;
   @Input() isEven: boolean;
   @Input() index: number;
 
-//子コンポーネントで発生した特定のイベント(例えば、ボタンのクリックなど)を親コンポーネントに通知するときに使用
-//イベント通知とともに、子コンポーネントから親コンポーネントに値を渡す
-//https://it-infomation.com/angular-output-decorator/
-//今回は、イベントエミッターを通じてインデックスを送信
   @Output() deleteFromChild = new EventEmitter<number>();
 
 
   constructor(private apiService: BooksService){}
 
-  //CardComponentで削除されたときに、BooksComponentが更新されるようにする
+
   deleteCard2(){
     this.apiService.delete(this.childCard.id_book).subscribe((resp: Respuesta) =>{
       console.log(resp);
