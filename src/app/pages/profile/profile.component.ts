@@ -48,7 +48,9 @@ export class ProfileComponent implements OnInit {
       {timeOut:2000, positionClass:'toast-top-center'});
     }
     else
-      this.usersService.user = resp[0];
+      //update dato de userService, y update myUser como updatedUser
+      this.usersService.user = updatedUser;
+      this.myUser = updatedUser;
       this.toastr.success('usuario modificado satisfactoriamente.', 'Success',
       {timeOut:2000, positionClass:'toast-top-center'});
   });
