@@ -62,8 +62,10 @@ export class UsersService {
     return this.currentUserSubject.value;
   }
 
-  public edit(user: User){
-
+  public edit(user: User): Observable<any>{
+    console.log(user);
+    const editProfileUrl = this.url + '/profile';
+    return this.http.post(editProfileUrl, user);
   }
   
 }
