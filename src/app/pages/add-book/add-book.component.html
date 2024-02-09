@@ -9,7 +9,7 @@
             </label>
     
             <label for="tipo">
-                <input placeholder="Tapa blanda/dura" type="text" class="input" #tipo>
+                <input placeholder="Tapa Blanda/ Tapa Dura" type="text" class="input" #tipo>
             </label>
     
             <label for="autor">
@@ -23,16 +23,13 @@
             <label for="foto">
                 <input placeholder="Photo" type="text" class="input" #foto>
             </label>
-    
+<!--     
             <label for="bookid">
                 <input placeholder="Codigo Libro" type="text" class="input" #codigoLibro>
-            </label>
+            </label> -->
+
+            <button class="btn btn-warning" type="button" (click)="insertarLibro( titulo, tipo, autor, precio, foto)">Insertar Libro</button>
     
-            <!-- <input class="btn btn-primary" type="button" value="Insertar Libro"> -->
-            <!-- 上のidと一致する必要あり -->
-            <button class="btn btn-warning" type="button" (click)="insertarLibro(codigoLibro, titulo, tipo, autor, precio, foto)">Insertar Libro</button>
-    
-            <!-- <input type="button" class="btn-insertar" (click)="addBooks(bookid, titulo, tipo, autor, precio, foto)" value="Insertar Libro"/> -->
         </form>
     </div>
     

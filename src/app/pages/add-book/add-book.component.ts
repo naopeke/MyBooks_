@@ -4,6 +4,8 @@ import { BooksService } from 'src/app/shared/books.service';
 import { Book } from 'src/app/models/book';
 import { Router } from '@angular/router';
 import { Respuesta } from 'src/app/models/respuesta';
+import { UsersService } from 'src/app/shared/users.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-add-book',
@@ -14,9 +16,13 @@ export class AddBookComponent implements OnInit {
   
   public message:string;
 
+  currentUser: User | null = null;
+
   constructor(private apiService: BooksService,
               private toastr: ToastrService, 
-              private router: Router){
+              private router: Router,
+              private usersService: UsersService
+              ){
     this.message = null;
   }
   
@@ -26,10 +32,13 @@ export class AddBookComponent implements OnInit {
   }
             
 
-  insertarLibro(codigoLibro:HTMLInputElement, titulo:HTMLInputElement, tipo:HTMLInputElement, autor:HTMLInputElement, precio:HTMLInputElement, foto:HTMLInputElement){
+  insertarLibro(
+    // codigoLibro:HTMLInputElement, 
+    titulo:HTMLInputElement, tipo:HTMLInputElement, autor:HTMLInputElement, precio:HTMLInputElement, foto:HTMLInputElement){
     
-    if (codigoLibro.value == ''
-        || titulo.value == ''
+    if (
+      // codigoLibro.value == '' || 
+      titulo.value == ''
         || tipo.value == ''
         || autor.value == ''
         || precio.value == ''
@@ -37,7 +46,15 @@ export class AddBookComponent implements OnInit {
         this.toastr.error('Falta un campo obligatorio,', 'Error',
         {timeOut: 2000, positionClass:'toast-top-center'});
     else {
-      let nuevoLibro: Book = new Book(parseFloat(codigoLibro.value), titulo.value, tipo.value, autor.value, parseFloat(precio.value), foto.value);
+      // si currentUser.id_uer no es undefined(null), añadir id_user en bbdd
+      let nuevoLibro: Book = new Book(
+        titulo.value, 
+        tipo.value, 
+        autor.value, 
+        parseFloat(precio.value), 
+        foto.value,
+        this.currentUser ? this.currentUser.id_user : undefined
+      );
       console.log(nuevoLibro);
 
       this.apiService.add(nuevoLibro)
@@ -49,7 +66,7 @@ export class AddBookComponent implements OnInit {
         this.toastr.success('Libro agregado satisfactoriamente', 'Success',
         {timeOut: 2000, positionClass:'toast-top-center'});
 
-        codigoLibro.value = '';
+        // codigoLibro.value = '';
         titulo.value = '';
         tipo.value = '';
         autor.value = '';
@@ -65,5 +82,6 @@ export class AddBookComponent implements OnInit {
 
 
   ngOnInit():void{
-   }
+    this.currentUser = this.usersService.getCurrentUser();
+     }
   }

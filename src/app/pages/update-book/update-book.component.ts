@@ -20,7 +20,7 @@ export class UpdateBookComponent {
               private toastr: ToastrService){ }
 
   modificarLibro(codigoLibro:HTMLInputElement, titulo:HTMLInputElement, tipo:HTMLInputElement, autor:HTMLInputElement, precio:HTMLInputElement, foto:HTMLInputElement){
-    let updatedBook = new Book(parseFloat(codigoLibro.value), titulo.value, tipo.value, autor.value, parseFloat(precio.value), foto.value);
+    let updatedBook = new Book(titulo.value, tipo.value, autor.value, parseFloat(precio.value), foto.value, parseFloat(codigoLibro.value));
     console.log(updatedBook);
     this.apiService.edit(updatedBook).subscribe((resp:Respuesta) =>{
       console.log(resp);
