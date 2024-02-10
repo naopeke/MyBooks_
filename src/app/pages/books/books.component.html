@@ -37,7 +37,7 @@
 </div>
 
 <div *ngIf="bookDetail" [ngClass]="{'card-detail': bookDetail}">
-    <div class="book-detail ">
+    <div class="book-detail d-flex flex-row flex-wrap justify-content-center">
         <app-card [childCard]="bookDetail"></app-card>
     </div>
 
