@@ -15,12 +15,10 @@ const routes: Routes = [
   {path: "profile", component:ProfileComponent},
   {path: "register", component:RegisterComponent},
   {path: "books", component:BooksComponent},
-  //ユーザーがbooksページにアクセスする際にURLの一部として本のIDを指定できる
   {path: "books/:bookid", component:BooksComponent},
   {path: "add-book", component:AddBookComponent},
   {path: "update-book", component:UpdateBookComponent},
   {path: "login", component:LoginComponent},
-  // {path: "temperature", component:TemperatureTestComponent}
 ];
 
 @NgModule({

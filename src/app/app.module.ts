@@ -37,6 +37,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -77,7 +80,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatToolbarModule,
     MatTableModule,
     MatBadgeModule,
-    MatSnackBarModule 
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule 
   ],
   providers: [
     BooksService,

@@ -1,5 +1,4 @@
 * {
-    color:var(--main-color);
     margin:0;
     padding:0;
     font-family: var(--main-font-family);
@@ -8,96 +7,28 @@
 body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/img/fondoM.jpg');
     background-repeat: repeat;
-}
- 
-.container {
-    border:2px solid red;
-    padding-top: 80px;
-    display: flex;
+    display:flex;
     flex-direction: column;
     justify-content: center;
-    align-content: center;
+    text-align: center;
+    z-index: -1;
 }
 
-/*.card-wrapper{
-    border:2px solid orange;
-    width:100%;
-    margin-bottom: 50px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap:wrap;
-    gap:20px;
-    justify-content: center;
+.form mat-form-field {
+    /* border:2px solid red; */
+    padding-top: 50px;
+    width: 450px;
 }
 
-.card {
-    background-color: rgba(255, 255, 255, 0.247);
-    width: 240px;
-    height: 410px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.form-label {
+    color:gray;
+}
+.form-btn {
+    min-width: 150px;
+    height: 56px;
+    font-size: 20px;
 }
 
-.image{
-    width: 160px;
-    height:auto;
-    margin-bottom: 10px;
-    margin-top:10px;
+.mensaje{
+    color: white;
 }
-
-.booktitle {
-    height: 54px;
-    text-align: justify;
-    padding: 10px;
-
-}
-
-.booktype {
-    margin-bottom: 10px;
-}
-
-.backBtn-wrapper{
-    border: 2px solid red;
-    padding-top:100px;
-    padding-left: 80px;
-}
-
-.backBtn{
-    color:white;
-    width: 100px;
-}
-
-.search-wrapper{
-    border:2px solid green;
-    padding-top:120px;
-    display: flex;
-    justify-content: center;
-}
-
-.form-control {
-    width: 300px;
-    height: 50px;
-}
-
-.card-detail{
-    border:2px solid red;
-    margin-top:150px;
-    display: flex;
-    justify-content: center;
-}
-
-.btn-insertar{
-    background-color: darkred;
-    margin-top: 10px;
-    height:50px;
-} */
-
-/* par = even 偶数, impar = odd 奇数*/
-/* .esPar {
-    background-color: midnightblue;
-}
-
-.esImpar {
-    background-color: cadetblue;
-} */

@@ -1,14 +1,27 @@
 <!-- 親コンポーネント books ：本の追加や管理 parent : add and edit books-->
 <body>
     
-<div *ngIf="!bookDetail">
+<!-- <div *ngIf="!bookDetail">
 <div class="search-wrapper">
     <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search by ID" aria-label="Search" #searchInput>
         <button class="btn btn-outline-success" type="button" (click)="mostrarUnLibro(searchInput.value)">BUSCAR</button>
     </form>
 </div>
+</div> -->
+
+<div *ngIf="!bookDetail">
+    <div class="form">
+        <mat-form-field>
+            <mat-label class="form-label">Ver el detalle con Book ID</mat-label>
+            <input matInput #searchInput>
+            <button mat-raised-button matSuffix color="primary" class="form-btn" (click)="mostrarUnLibro(searchInput.value)">
+            Buscar</button>
+        </mat-form-field>    
+    </div>
 </div>
+
+    
 <!-- si hay array de books -->
 <div *ngIf="!bookDetail">
     <div class="row">
@@ -24,15 +37,16 @@
 </div>
 
 <div *ngIf="bookDetail" [ngClass]="{'card-detail': bookDetail}">
-    <div class="book-detail">
+    <div class="book-detail ">
         <app-card [childCard]="bookDetail"></app-card>
     </div>
 
 </div>
 
 <!-- Si no hay dato en array de books -->
-<div *ngIf="!books || books.length === 0">
+<div *ngIf="!books || books.length === 0" class="mensaje">
     <h1>No libros disponibles</h1>
+    <h2>Crea una cuenta para disfrutar nuestro servicio</h2>
 </div>
 
 </body>
