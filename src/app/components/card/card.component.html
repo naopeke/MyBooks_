@@ -1,7 +1,7 @@
 <!-- 子コンポーネント：表示専用 child for display -->
 
 
-            <div class="card">
+            <!-- <div class="card">
                 <div class="delete-wrapper">
                     <div class="delete" (click)="deleteCard2()">×</div> 
                 </div>
@@ -12,4 +12,35 @@
                 <p class="output bookid"> {{ childCard.id_book | addRef }}</p>
                 <p class="output bookprice"> {{ childCard.price | currency:"EUR":"symbol"}}</p>
                 <button [ngClass]="{'esPar': isEven, 'esImpar': !isEven}">Comprar</button>
-            </div>
+            </div> -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-8 col-lg-12">
+                    <!-- <div> -->
+            <mat-card class="card">
+                <mat-card-header>
+                    <div class="delete-wrapper">
+                        <div class="delete" (click)="deleteCard2()">×</div>     
+                    </div>
+                </mat-card-header>
+                <img mat-card-image class="bookimg" src="{{ childCard.photo }}" alt="img"/>
+                <mat-card-content>
+                    <p class="output booktype"> {{ childCard.type }}</p>
+                    <p class="output booktitle"> {{ childCard.title }}</p>
+                    <p class="output bookauthor"> {{ childCard.author }}</p>
+                    <p class="output bookid"> {{ childCard.id_book | addRef }}</p>
+                    <p class="output bookprice"> {{ childCard.price | currency:"EUR":"symbol"}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button [ngClass]="{'esPar': isEven, 'esImpar': !isEven}">Comprar</button>
+                </mat-card-actions>
+            </mat-card>
+
+        </div>
+    </div>
+   
+
+</div>
+            
+
+            

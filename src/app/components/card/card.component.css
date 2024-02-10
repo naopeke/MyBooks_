@@ -3,7 +3,14 @@
     padding:0;
 }
 
-.container {
+ .container {
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} 
+
+/* .container {
     padding-top: 80px;
     display: flex;
     flex-direction: column;
@@ -11,13 +18,24 @@
 }
 
 .card-wrapper{
-    /* border:2px solid orange; */
+    border:2px solid orange;
     margin-bottom: 50px;
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
     gap:20px;
     justify-content: center;
+} */
+
+/* .card {
+    height: 500px;
+} */
+
+.bookimg{
+    height:280px;
+    object-fit: cover;
+    /* margin-bottom: 10px;
+    margin-top:0; */
 }
 
 .delete-wrapper{
@@ -31,12 +49,16 @@
     /* border: 2px solid red; */
     font-size: 125%;
     font-weight: bold;
-    padding-right: 15px;
+    padding-right: 10px;
     cursor: pointer;
 }
 
-.card {
-    /* background-color: rgba(255, 255, 255, 0.247); */
+
+.booktitle{
+    min-height: 3em;
+}
+/* .card {
+    background-color: rgba(255, 255, 255, 0.247);
     background-color:#f8f3e8;
     box-shadow: 0 0 40px rgba(0,0,0,0.2), 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius:3px;
@@ -67,14 +89,14 @@
 
 
 .form-wrapper{
-    /* border:2px solid red; */
+    border:2px solid red;
     margin-bottom:100px;
     display: flex;
     justify-content: center;
 }
 
 .form{
-    /* border:2px solid white; */
+    border:2px solid white;
     display: flex;
     flex-direction: column;
     width: 240px;
@@ -108,12 +130,13 @@ button {
 
 .btn-insertar{
     background-color: darkred;
-    margin-top: 10px;
-}
+    margin-top: 10px; */
+/* } */
 
 /* par = even 偶数, impar = odd 奇数*/
 .esPar {
     background-color: midnightblue;
+    color:white !important;
 }
 
 .esImpar {

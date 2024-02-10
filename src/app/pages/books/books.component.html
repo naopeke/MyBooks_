@@ -11,15 +11,16 @@
 </div>
 <!-- si hay array de books -->
 <div *ngIf="!bookDetail">
-    <div class="container" *ngIf="books && books.length > 0">
-        <div class="card-wrapper">
-            <app-card *ngFor="let book of books; let i = index" 
-                      [childCard]="book"
-                      [isEven]="i % 2 === 0"
-                      (deleteFromChild)="eliminarLibro($event)">
+    <div class="row">
+        <div class="d-flex flex-row flex-wrap justify-content-center">
+            <div *ngFor="let book of books; let i = index" class="p-2"> 
+            <app-card [childCard]="book"
+                        [isEven]="i % 2 === 0"
+                        (deleteFromChild)="eliminarLibro($event)">
             </app-card>
+            </div>
         </div>
-    </div> 
+    </div>
 </div>
 
 <div *ngIf="bookDetail" [ngClass]="{'card-detail': bookDetail}">

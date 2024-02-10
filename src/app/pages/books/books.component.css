@@ -9,9 +9,9 @@ body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/img/fondoM.jpg');
     background-repeat: repeat;
 }
-
+ 
 .container {
-    /* border:2px solid red; */
+    border:2px solid red;
     padding-top: 80px;
     display: flex;
     flex-direction: column;
@@ -19,8 +19,8 @@ body {
     align-content: center;
 }
 
-.card-wrapper{
-    /* border:2px solid orange; */
+/*.card-wrapper{
+    border:2px solid orange;
     width:100%;
     margin-bottom: 50px;
     display: flex;
@@ -58,7 +58,7 @@ body {
 }
 
 .backBtn-wrapper{
-    /* border: 2px solid red; */
+    border: 2px solid red;
     padding-top:100px;
     padding-left: 80px;
 }
@@ -69,7 +69,7 @@ body {
 }
 
 .search-wrapper{
-    /* border:2px solid green; */
+    border:2px solid green;
     padding-top:120px;
     display: flex;
     justify-content: center;
@@ -81,7 +81,7 @@ body {
 }
 
 .card-detail{
-    /* border:2px solid red; */
+    border:2px solid red;
     margin-top:150px;
     display: flex;
     justify-content: center;
@@ -91,13 +91,13 @@ body {
     background-color: darkred;
     margin-top: 10px;
     height:50px;
-}
+} */
 
 /* par = even 偶数, impar = odd 奇数*/
-.esPar {
+/* .esPar {
     background-color: midnightblue;
 }
 
 .esImpar {
     background-color: cadetblue;
-}
+} */
