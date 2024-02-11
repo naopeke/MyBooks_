@@ -16,7 +16,8 @@ export class AddBookComponent implements OnInit {
   
   public message:string;
 
-  currentUser: User | null = null;
+  // currentUser guarda dato logueado. Si está logueado, User, si no, null
+  public currentUser: User | null = null;
 
   constructor(private apiService: BooksService,
               private toastr: ToastrService, 
@@ -46,14 +47,14 @@ export class AddBookComponent implements OnInit {
         this.toastr.error('Falta un campo obligatorio,', 'Error',
         {timeOut: 2000, positionClass:'toast-top-center'});
     else {
-      // si currentUser.id_uer no es undefined(null), añadir id_user en bbdd
+      // si currentUser.id_user no es undefined(null), añadir id_user en bbdd
       let nuevoLibro: Book = new Book(
         titulo.value, 
         tipo.value, 
         autor.value, 
         parseFloat(precio.value), 
         foto.value,
-        this.currentUser ? this.currentUser.id_user : undefined
+        this.currentUser.id_user
       );
       console.log(nuevoLibro);
 
