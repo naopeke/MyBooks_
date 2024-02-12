@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, Valid
 import { UsersService } from 'src/app/shared/users.service';
 import { Respuesta } from 'src/app/models/respuesta';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-register',
@@ -16,7 +17,8 @@ export class FormRegisterComponent implements OnInit {
 
   constructor(private fromBuilder: FormBuilder, 
               private apiService: UsersService,
-              private toastr: ToastrService){ 
+              private toastr: ToastrService,
+              private router: Router){ 
     this.buildForm();
   }
 
@@ -25,6 +27,7 @@ export class FormRegisterComponent implements OnInit {
     this.router.navigate(["/books"]);
   }
 
+
   public register(){
     const user = this.registerForm.value;
     console.log(user);
@@ -32,12 +35,12 @@ export class FormRegisterComponent implements OnInit {
     this.apiService.register(user).subscribe({
       next: (resp: Respuesta) => {
         console.log(resp);
-        this.toastr.success('Hemos fallado registrarse. Intenta de nuevo.', 'Error',
+        this.toastr.success('Hemos conseguido registrarse', 'Success',
         {timeOut:2000, positionClass:'toast-top-center'})
       },
       error: error => {
         console.error('Error: ', error);
-        this.toastr.success('Hemos fallado registrarse. Intenta de nuevo.', 'Error',
+        this.toastr.error('Hemos fallado registrarse. Intenta de nuevo.', 'Error',
         {timeOut:2000, positionClass:'toast-top-center'});
       },
       complete: () => {
@@ -60,8 +63,7 @@ export class FormRegisterComponent implements OnInit {
       url: [, [Validators.required, Validators.pattern(reg)]],
       password1: [, [Validators.required, Validators.minLength(minPassLength), this.createPasswordStrengthValidator()]],
       password2: [, [Validators.required, this.checkPasswords]]
-  
-    });
+    }, { validators: this.checkPasswords });
   }
   
   private checkPasswords(control: AbstractControl){
@@ -83,11 +85,11 @@ export class FormRegisterComponent implements OnInit {
             return null;
         }
 
-        const hasUpperCase = /[A-Z]+/.test(value);
+        const hasUpperCase = /[A-Z]/.test(value);
 
-        const hasLowerCase = /[a-z]+/.test(value);
+        const hasLowerCase = /[a-z]/.test(value);
 
-        const hasNumeric = /[0-9]+/.test(value);
+        const hasNumeric = /[0-9]/.test(value);
 
         const passwordValid = hasUpperCase && hasLowerCase && hasNumeric;
 
